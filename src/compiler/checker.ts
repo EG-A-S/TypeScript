@@ -3704,7 +3704,7 @@ export function createTypeChecker(host: TypeCheckerHost): TypeChecker {
 
         const file = moduleSymbol.declarations?.find(isSourceFile);
         const specifier = getModuleSpecifierForImportOrExport(node);
-        if (!specifier) {
+        if (!specifier || (moduleSymbol.flags === 512 && moduleSymbol.exports?.has("default" as __String))) {
             return exportDefaultSymbol;
         }
         const hasDefaultOnly = isOnlyImportableAsDefault(specifier);
