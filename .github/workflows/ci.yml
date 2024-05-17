@@ -5,6 +5,7 @@ on:
     branches:
       - main
       - release-*
+      - mestro
   pull_request:
     branches:
       - main
