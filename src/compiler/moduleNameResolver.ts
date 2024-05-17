@@ -3446,13 +3446,26 @@ function useCaseSensitiveFileNames(state: ModuleResolutionState) {
         state.host.useCaseSensitiveFileNames();
 }
 
+const { isBuiltin } = require("module");
+const failedLookups = new Set<string>();
+
 function loadPnpPackageResolution(packageName: string, containingDirectory: string) {
+    if (failedLookups.has(packageName)) {
+        return;
+    }
+
     try {
         const resolution = getPnpApi(containingDirectory).resolveToUnqualified(packageName, `${containingDirectory}/`, { considerBuiltins: false });
         return normalizeSlashes(resolution).replace(/\/$/, "");
     }
     catch {
-        // Nothing to do
+        if (
+            isBuiltin(packageName) ||
+            (packageName.startsWith("@types/") && isBuiltin(packageName.slice(7))) ||
+            (packageName.startsWith("@typescript/") || packageName.startsWith("@types/typescript__"))
+        ) {
+            failedLookups.add(packageName);
+        }
     }
 }
 
