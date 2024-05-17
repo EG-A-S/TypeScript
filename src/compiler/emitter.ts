@@ -548,10 +548,7 @@ function getOutputPathWithoutChangingExt(
     getCommonSourceDirectory: () => string,
 ): string {
     return outputDir ?
-        resolvePath(
-            outputDir,
-            getRelativePathFromDirectory(getCommonSourceDirectory(), inputFileName, ignoreCase),
-        ) :
+        `${outputDir}${directorySeparator}${inputFileName.slice(getCommonSourceDirectory().length)}` :
         inputFileName;
 }
 
