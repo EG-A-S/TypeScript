@@ -126,7 +126,7 @@ import {
     TypeChecker,
     UserPreferences,
 } from "./_namespaces/ts.js";
-import { getPnpApi } from "./pnp.js";
+import { getPnpApi } from "./pnpapi.js";
 
 // Used by importFixes, getEditsForFileRename, and declaration emit to synthesize import module specifiers.
 
