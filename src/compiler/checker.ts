@@ -1796,6 +1796,8 @@ export function createTypeChecker(host: TypeCheckerHost): TypeChecker {
         getApparentType,
         getUnionType,
         isTypeAssignableTo,
+        isTypeIdenticalTo,
+        isTypeSubtypeOf,
         createAnonymousType,
         createSignature,
         createSymbol,

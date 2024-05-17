@@ -5242,6 +5242,8 @@ export interface TypeChecker {
      * ```
      */
     isTypeAssignableTo(source: Type, target: Type): boolean;
+    isTypeIdenticalTo(source: Type, target: Type): boolean;
+    isTypeSubtypeOf(source: Type, target: Type): boolean;
     /** @internal */ createAnonymousType(symbol: Symbol | undefined, members: SymbolTable, callSignatures: Signature[], constructSignatures: Signature[], indexInfos: IndexInfo[]): Type;
     /** @internal */ createSignature(
         declaration: SignatureDeclaration | undefined,
